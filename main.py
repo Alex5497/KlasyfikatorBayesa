@@ -4,6 +4,7 @@ file_name = "car_evaluation.data"
 
 df = pd.read_csv(file_name, header=None)
 
+
 def calculateProbability(case, condition, number_of_column):
     case_under_condition_sum = 0
     condition_sum = 0
@@ -11,14 +12,15 @@ def calculateProbability(case, condition, number_of_column):
     for element in df.itertuples():
         if element[7] == condition:
             condition_sum += 1
-            if element[number_of_column+1] == case:
+            if element[number_of_column + 1] == case:
                 case_under_condition_sum += 1
 
     if case_under_condition_sum == 0:
         case_under_condition_sum = 1
-        condition_sum += df[number_of_column+1].nunique()
+        condition_sum += df[number_of_column].nunique()
 
     return case_under_condition_sum / condition_sum
+
 
 while True:
     try:
